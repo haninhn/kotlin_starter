@@ -23,6 +23,7 @@ fun validateEmail(email: String): ValidationResult {
             successful = true
         )
   }
+
 fun validatePassword(password: String): ValidationResult {
     if (password.isBlank()) {
         return ValidationResult(
@@ -49,6 +50,19 @@ fun validatePassword(password: String): ValidationResult {
         return ValidationResult(
             successful = false,
             errorMessage = "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character"
+        )
+    }
+
+    return ValidationResult(
+        successful = true
+    )
+}
+
+fun validateRepeatedPassword(password: String, repeatedPassword: String): ValidationResult {
+    if (password != repeatedPassword) {
+        return ValidationResult(
+            successful = false,
+            errorMessage = "The passwords don't match"
         )
     }
 
