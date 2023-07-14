@@ -10,9 +10,11 @@ import com.example.authstarterkotlin.feature_auth.data.remote.AuthApi
 import com.example.authstarterkotlin.feature_auth.data.remote.AuthRemoteDataSource
 import com.example.authstarterkotlin.feature_auth.data.remote.repository.AuthRepositoryImpl
 import com.example.authstarterkotlin.feature_auth.domain.repository.AuthRepository
-import com.example.authstarterkotlin.feature_auth.domain.use_case.LoginUseCase
-import com.example.authstarterkotlin.feature_auth.domain.use_case.RegisterUseCase
+import com.example.authstarterkotlin.feature_auth.domain.use_case.*
+import com.example.authstarterkotlin.feature_auth.presentation.forgetPassword.ForgetPasswordScreen
+import com.example.authstarterkotlin.feature_auth.presentation.forgetPassword.ForgetPasswordViewModel
 import com.example.authstarterkotlin.feature_auth.presentation.login.LoginViewModel
+import com.example.authstarterkotlin.feature_auth.presentation.updatePassword.UpdatePasswordViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.koin.android.ext.koin.androidContext
@@ -34,6 +36,10 @@ val AuthModule = module {
     }
     single { LoginUseCase(authRepository = get()) }
     single { RegisterUseCase(authRepository = get()) }
+    single { RefreshTokenUseCase(authRepository = get()) }
+    single { UpdatePasswordUseCase(authRepository = get()) }
+    single { ValidateEmailUseCase(authRepository = get()) }
+    single { ValidateCodeUseCase(authRepository = get()) }
 
 
     single<Storage<String>> {
@@ -48,6 +54,8 @@ val AuthModule = module {
 
     viewModel {
         LoginViewModel(loginUseCase = get())
+        ForgetPasswordViewModel(validateEmailUseCase = get())
+        UpdatePasswordViewModel(updatePasswordUseCase = get(), savedStateHandle = get())
     }
 
 
