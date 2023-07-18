@@ -11,7 +11,6 @@ import com.example.authstarterkotlin.feature_auth.data.remote.AuthRemoteDataSour
 import com.example.authstarterkotlin.feature_auth.data.remote.repository.AuthRepositoryImpl
 import com.example.authstarterkotlin.feature_auth.domain.repository.AuthRepository
 import com.example.authstarterkotlin.feature_auth.domain.use_case.*
-import com.example.authstarterkotlin.feature_auth.presentation.forgetPassword.ForgetPasswordScreen
 import com.example.authstarterkotlin.feature_auth.presentation.forgetPassword.ForgetPasswordViewModel
 import com.example.authstarterkotlin.feature_auth.presentation.login.LoginViewModel
 import com.example.authstarterkotlin.feature_auth.presentation.updatePassword.UpdatePasswordViewModel
@@ -51,6 +50,7 @@ val AuthModule = module {
     }
 
     single { Gson() }
+
 
     viewModel {
         LoginViewModel(loginUseCase = get())
