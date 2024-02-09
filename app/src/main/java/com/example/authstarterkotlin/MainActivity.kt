@@ -1,17 +1,20 @@
 package com.example.authstarterkotlin
 
+import com.example.authstarterkotlin.tasks.TodoList
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
-import com.example.authstarterkotlin.core.graphs.RootNavigationGraph
+import androidx.compose.ui.unit.dp
 import com.example.authstarterkotlin.ui.theme.AuthStarterKotlinTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,8 +26,29 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    RootNavigationGraph(
-                        navController = rememberNavController(),
+
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(
+                                title = { Text(text = "Taskes") },
+                                backgroundColor = Color.Blue,
+                                contentColor = Color.White,
+                                elevation = 4.dp,
+                            )
+                        },
+                        content = {
+                            Column(
+                                modifier = Modifier
+                                    .background(color = Color.Black)
+                                    .fillMaxSize()
+                                    .padding(it)
+                                    .padding(16.dp),
+
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                            ) {
+                                TodoList()
+                            }
+                        }
                     )
                 }
             }

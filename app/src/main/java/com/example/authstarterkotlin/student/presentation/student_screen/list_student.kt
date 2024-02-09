@@ -176,7 +176,5 @@ fun ListStudent(navigation: NavController) {
                 }
 
             }
-
-
-        })
+     })
 }

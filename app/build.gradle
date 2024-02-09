@@ -118,5 +118,6 @@ dependencies {
     implementation "androidx.activity:activity-compose:1.8.0-alpha04"
     implementation "com.google.accompanist:accompanist-swiperefresh:0.24.2-alpha"
 
+    implementation"com.google.code.gson:gson:2.8.8"
 
 }
