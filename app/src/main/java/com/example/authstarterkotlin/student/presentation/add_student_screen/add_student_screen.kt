@@ -47,7 +47,13 @@ fun AddEditStudent(
     LaunchedEffect(key1 = state.successAdd) { // Modify the key to state.successAdd
         if (state.successAdd) {
             navigation.navigate(Screen.AllStudentScreen.route)
-            Toast.makeText(context, "Student added successfully", Toast.LENGTH_SHORT).show()
+            if (id != "") {
+                Toast.makeText(context, "Student updated successfully", Toast.LENGTH_LONG).show()
+
+            } else {
+                Toast.makeText(context, "Student added successfully", Toast.LENGTH_LONG).show()
+
+            }
             // navigation.popBackStack()
             print("success")
         }
@@ -58,7 +64,12 @@ fun AddEditStudent(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Add Student") },
+                title = {
+                    Text(
+                        text =
+                        if (id != "") "Add Student" else "update Student"
+                    )
+                },
                 backgroundColor = Color(0xFF3757FF),
                 contentColor = Color.White,
                 elevation = 4.dp
@@ -66,7 +77,8 @@ fun AddEditStudent(
         },
         content = {
             Column(
-                modifier = Modifier.background(color = Color(0xFFDCE9FF))
+                modifier = Modifier
+                    .background(color = Color(0xFFDCE9FF))
                     .fillMaxSize()
                     .padding(it)
                     .padding(16.dp),
@@ -76,12 +88,14 @@ fun AddEditStudent(
                 Spacer(modifier = Modifier.height(15.dp))
                 Text(
                     text = "Enter student data below",
-                    style = MaterialTheme.typography.h5.copy(color = Color(0xFF000000) ),
+                    style = MaterialTheme.typography.h5.copy(color = Color(0xFF000000)),
                 )
                 Spacer(modifier = Modifier.height(25.dp))
 
                 Text(
-                    modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 16.dp, end = 16.dp),
                     text = "user Name",
                     style = label.copy(color = Color(0xFF000000)),
                 )
@@ -95,11 +109,13 @@ fun AddEditStudent(
                     keyboardType = KeyboardType.Email,
                     error = state.userNameError,
 
-                )
+                    )
 
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 16.dp, end = 16.dp),
                     text = "Card",
                     style = label.copy(color = Color(0xFF000000)),
                 )
@@ -112,11 +128,13 @@ fun AddEditStudent(
                     hint = "Enter Student Card ",
                     keyboardType = KeyboardType.Email,
                     error = state.cardError,
-                    )
+                )
 
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 16.dp, end = 16.dp),
                     text = "Division",
                     style = label.copy(color = Color(0xFF000000)),
                 )
@@ -140,10 +158,10 @@ fun AddEditStudent(
                             .align(Alignment.BottomCenter),
                         text = "Confirm",
                         onClick = {
-                            if(id != ""){
+                            if (id != "") {
                                 viewModel.onEvent(AddEditEvent.UpdateBtn)
-                            }else
-                               viewModel.onEvent(AddEditEvent.SubmitBtn)
+                            } else
+                                viewModel.onEvent(AddEditEvent.SubmitBtn)
                         }
                     )
                 }        // Button to submit the form
