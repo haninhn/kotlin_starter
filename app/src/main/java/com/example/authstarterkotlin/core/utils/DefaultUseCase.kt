@@ -1,7 +1,5 @@
-
+package com.example.authstarterkotlin.core.utils
 import OfflineException
-import Resource
-import com.example.authstarterkotlin.core.utils.UseCase
 import io.ktor.client.plugins.*
 import io.ktor.client.statement.*
 import kotlinx.coroutines.flow.Flow
